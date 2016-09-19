@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>叫外卖，上饿了么</title>
+  <link rel="stylesheet" href="https://static11.elemecdn.com/eleme/activities/dist/baida/dist.0d05d9.css" media="screen" title="no title">
+</head>
+<body>
+<section class="banner">
+  <img src="https://static11.elemecdn.com/eleme/activities/dist/baida/banner.354c82.jpg">
+</section>
+<div class="prepare wrapper" id="prepareScene">
+  <section class="intro" id="topTips">
+    请输入手机号领取饿了么红包
+  </section>
+  <section class="tip" id="tipSection"></section>
+  <section class="form">
+    <input placeholder="请输入您的手机号码" id="phoneInput">
+    <a id="grabButton" href="javascript:;">领取红包</a>
+  </section>
+  <section class="rules">
+    <h3>活动规则</h3>
+    <ol>
+      <li>发放至手机号的红包需下载饿了么App用手机号注册，或将手机号绑定至已注册的饿了么账户后才可使用。</li>
+      <li>使用红包时的下单手机号需为抢红包时使用的手机号。</li>
+      <li>红包仅限在线支付时使用，每张订单仅限使用一张红包，红包不找零。</li>
+      <li>饿了么保留法律范围内允许的对活动的解释权。</li>
+    </ol>
+  </section>
+</div>
+<div class="success wrapper" id="successScene">
+  <section class="caption" id="captionField">恭喜获得饿了么外卖券</section>
+  <section class="ticketlist" id="ticketList">
+    <dl>
+      <dt>已领完</dt>
+    </dl>
+  </section>
+  <section class="tip"></section>
+  <section class="account" id="accountSection">
+    <var id="amountField"> 外卖券已经放入账户 </var>
+    <var id="accountField"><br>登录 APP 即可使用</var>
+  </section>
+  <section class="download">
+    <a href="https://h.ele.me/activities/download?from=erweimahongbao">
+      <img src="https://static11.elemecdn.com/eleme/activities/dist/baida/eleme.d3f894.svg">
+      <span>立即使用</span>
+    </a>
+  </section>
+  <section class="rules">
+    <h3>活动规则</h3>
+    <ol>
+      <li>发放至手机号的红包需下载饿了么App用手机号注册，或将手机号绑定至已注册的饿了么账户后才可使用。</li>
+      <li>使用红包时的下单手机号需为抢红包时使用的手机号。</li>
+      <li>红包仅限在线支付时使用，每张订单仅限使用一张红包，红包不找零。</li>
+      <li>饿了么保留法律范围内允许的对活动的解释权。</li>
+    </ol>
+  </section>
+</div>
+<script src="http://cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
+<script type="text/javascript">
+  var CheckUtil = {
+    //判断为空
+    isEmpty:function(val) {
+      if (!val || val.length == 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    isTelephone:function(val) {
+      if (/^1[3|4|5|7|8]\d{9}$/.test(val)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+  $('document').ready(function() {
+    $('#grabButton').click(function() {
+      var strTel = $.trim($('#phoneInput').val());
+      if (CheckUtil.isEmpty(strTel)) {
+        $('#tipSection').text('请输入手机号！').show();
+        return;
+      };
+      if (!CheckUtil.isTelephone(strTel)) {
+        $('#tipSection').text('请输入格式正确的手机号').show();
+        return;
+      }
+      $('#prepareScene').css('display','none');
+      $('#successScene').css('display','block');
+      $('#ticketList').hide();
+      $('#accountSection').css('display','none');
+    })
+  })
+</script>
+</body>
+</html>
